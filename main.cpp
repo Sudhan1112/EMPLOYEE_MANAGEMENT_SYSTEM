@@ -50,6 +50,5 @@ int main() {
         salaries[i]->printSalaryDetails();
         cout << "Net Salary: " << salaries[i]->calculateNetSalary() << endl;
     }
-
     return 0;
 }
