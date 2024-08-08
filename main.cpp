@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "Employee.h"
 #include "Salary.h"
 
 using namespace std;
 
 int main() {
-    vector<Employee> employees;
-    vector<Salary> salaries;
+    // Using unique_ptr to manage Employee and Salary objects dynamically
+    vector<unique_ptr<Employee>> employees; // Vector of unique pointers to Employee
+    vector<unique_ptr<Salary>> salaries;    // Vector of unique pointers to Salary
 
     int numEmployees;
     cout << "Enter the number of employees: ";
@@ -25,7 +27,8 @@ int main() {
         cout << "Department: ";
         cin >> dept;
 
-        employees.emplace_back(id, name, dept);
+        // Creating Employee object with unique_ptr and adding it to the vector
+        employees.push_back(make_unique<Employee>(id, name, dept));
 
         cout << "Base Salary: ";
         cin >> baseSalary;
@@ -34,15 +37,18 @@ int main() {
         cout << "Tax Rate (%): ";
         cin >> taxRate;
 
-        salaries.emplace_back(baseSalary, bonus, taxRate);
+        // Creating Salary object with unique_ptr and adding it to the vector
+        salaries.push_back(make_unique<Salary>(baseSalary, bonus, taxRate));
     }
 
     for (size_t i = 0; i < employees.size(); ++i) {
         cout << "\nEmployee " << i + 1 << " Information:" << endl;
-        employees[i].printInfo();
+        // Accessing Employee object using unique_ptr
+        employees[i]->printInfo();
         cout << "Salary Details:" << endl;
-        salaries[i].printSalaryDetails();
-        cout << "Net Salary: " << salaries[i].calculateNetSalary() << endl;
+        // Accessing Salary object using unique_ptr
+        salaries[i]->printSalaryDetails();
+        cout << "Net Salary: " << salaries[i]->calculateNetSalary() << endl;
     }
 
     return 0;
