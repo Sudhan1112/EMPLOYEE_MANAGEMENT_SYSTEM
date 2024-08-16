@@ -1,15 +1,14 @@
 #include <iostream>
 #include <vector>
-#include <memory>
 #include "Employee.h"
 #include "Salary.h"
 
 using namespace std;
 
 int main() {
-    // Using unique_ptr to manage Employee and Salary objects dynamically
-    vector<unique_ptr<Employee>> employees; // Vector of unique pointers to Employee
-    vector<unique_ptr<Salary>> salaries;    // Vector of unique pointers to Salary
+    // Vectors to hold raw pointers to Employee and Salary objects
+    vector<Employee*> employees; // Vector of pointers to Employee
+    vector<Salary*> salaries;    // Vector of pointers to Salary
 
     int numEmployees;
     cout << "Enter the number of employees: ";
@@ -25,10 +24,10 @@ int main() {
         cout << "Name: ";
         cin >> name;
         cout << "Department: ";
-        cin >> dept;
+        getline(cin, dept);
 
-        // Creating Employee object with unique_ptr and adding it to the vector
-        employees.push_back(make_unique<Employee>(id, name, dept));
+        // Creating Employee object with new and adding it to the vector
+        employees.push_back(new Employee(id, name, dept));
 
         cout << "Base Salary: ";
         cin >> baseSalary;
@@ -37,18 +36,29 @@ int main() {
         cout << "Tax Rate (%): ";
         cin >> taxRate;
 
-        // Creating Salary object with unique_ptr and adding it to the vector
-        salaries.push_back(make_unique<Salary>(baseSalary, bonus, taxRate));
+        // Creating Salary object with new and adding it to the vector
+        salaries.push_back(new Salary(baseSalary, bonus, taxRate));
     }
 
     for (size_t i = 0; i < employees.size(); ++i) {
         cout << "\nEmployee " << i + 1 << " Information:" << endl;
-        // Accessing Employee object using unique_ptr
+        // Accessing Employee object using raw pointer
         employees[i]->printInfo();
         cout << "Salary Details:" << endl;
-        // Accessing Salary object using unique_ptr
+        // Accessing Salary object using raw pointer
         salaries[i]->printSalaryDetails();
         cout << "Net Salary: " << salaries[i]->calculateNetSalary() << endl;
     }
+
+    // Deallocate memory
+    for (size_t i = 0; i < employees.size(); ++i) {
+        delete employees[i];  // Free memory for Employee
+        delete salaries[i];   // Free memory for Salary
+    }
+
+    // Clear vectors
+    employees.clear();
+    salaries.clear();
+
     return 0;
 }
