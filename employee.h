@@ -12,15 +12,24 @@ private:
 
 public:
     // Constructor
-    Employee(const string& id, const string& name, const string& dept);
+    Employee(const string& id, const string& name, const string& dept) : id(id), name(name), department(dept) {};
 
     // Getters
-    string getId() const;
-    string getName() const;
-    string getDepartment() const;
+    string getId() const {
+    return id;
+};
+    string getName() const  {
+    return name;
+};
+    string getDepartment() const  {
+    return department;
+};
 
     // Method to print employee information
-    void printInfo() const;
+    void printInfo() const  {
+    cout << "Employee ID: " << id << "\nName: " << name
+         << "\nDepartment: " << department << endl;
+};
 };
 
 #endif // EMPLOYEE_H
