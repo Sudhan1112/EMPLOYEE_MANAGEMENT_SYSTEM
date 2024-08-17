@@ -8,10 +8,17 @@ private:
     double base; // Base Salary
     double bonus; // Bonus
     double tax;   // Tax Rate
+    static double totalSalaryPaid; // Static variable to track total salary paid
 
 public:
     // Constructor
-    Salary(double base, double bonus, double tax) : base(base), bonus(bonus), tax(tax) {};
+    Salary(double base, double bonus, double tax) : base(base), bonus(bonus), tax(tax) {
+        totalSalaryPaid += calculateNetSalary(); // Add net salary to total salary paid
+    }
+
+    static double getTotalSalaryPaid() {
+        return totalSalaryPaid; // Return the total net salary paid
+    }
 
     // Method to calculate net salary
     double calculateNetSalary() const {
@@ -26,5 +33,8 @@ public:
              << "\nTax Rate: " << tax << "%" << endl;
     }
 };
+
+// Define and initialize static member
+double Salary::totalSalaryPaid = 0.0;
 
 #endif // SALARY_H

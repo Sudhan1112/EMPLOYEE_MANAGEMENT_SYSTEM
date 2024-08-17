@@ -24,7 +24,7 @@ int main() {
         cout << "Name: ";
         cin >> name;
         cout << "Department: ";
-        getline(cin, dept);
+        cin >> dept;
 
         // Creating Employee object with new and adding it to the vector
         employees.push_back(new Employee(id, name, dept));
@@ -49,6 +49,10 @@ int main() {
         salaries[i]->printSalaryDetails();
         cout << "Net Salary: " << salaries[i]->calculateNetSalary() << endl;
     }
+
+    // Display the total number of employees and total salary paid
+    cout << "\nTotal Number of Employees: " << Employee::getEmployeeCount() << endl;
+    cout << "Total Net Salary Paid: " << Salary::getTotalSalaryPaid() << endl;
 
     // Deallocate memory
     for (size_t i = 0; i < employees.size(); ++i) {
