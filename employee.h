@@ -37,6 +37,10 @@ public:
         return employeeCount; // Return the total number of employees
     }
 
+    static void printEmployeeCount() {
+        cout << "Total Number of Employees: " << employeeCount << endl;
+    }
+
     // Method to print employee information
     void printInfo() const {
         cout << "Employee ID: " << id << "\nName: " << name
