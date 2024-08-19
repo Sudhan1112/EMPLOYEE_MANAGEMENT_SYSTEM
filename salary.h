@@ -20,6 +20,10 @@ public:
         return totalSalaryPaid; // Return the total net salary paid
     }
 
+    static void printTotalSalaryPaid() {
+        cout << "Total Net Salary Paid: " << totalSalaryPaid << endl;
+    }
+
     // Method to calculate net salary
     double calculateNetSalary() const {
         double taxDeduction = base * tax / 100;

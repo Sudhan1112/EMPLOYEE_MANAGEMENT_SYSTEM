@@ -50,9 +50,9 @@ int main() {
         cout << "Net Salary: " << salaries[i]->calculateNetSalary() << endl;
     }
 
-    // Display the total number of employees and total salary paid
-    cout << "\nTotal Number of Employees: " << Employee::getEmployeeCount() << endl;
-    cout << "Total Net Salary Paid: " << Salary::getTotalSalaryPaid() << endl;
+    // Display the total number of employees and total salary paid using static member functions
+    Employee::printEmployeeCount();
+    Salary::printTotalSalaryPaid();
 
     // Deallocate memory
     for (size_t i = 0; i < employees.size(); ++i) {
