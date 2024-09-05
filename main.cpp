@@ -26,8 +26,12 @@ int main() {
         cout << "Department: ";
         cin >> dept;
 
-        // Creating Employee object with new and adding it to the vector
-        employees.push_back(new Employee(id, name, dept));
+        // Creating Employee object with new and setting its data
+        Employee* emp = new Employee();
+        emp->setId(id);
+        emp->setName(name);
+        emp->setDepartment(dept);
+        employees.push_back(emp);
 
         cout << "Base Salary: ";
         cin >> baseSalary;
@@ -36,8 +40,12 @@ int main() {
         cout << "Tax Rate (%): ";
         cin >> taxRate;
 
-        // Creating Salary object with new and adding it to the vector
-        salaries.push_back(new Salary(baseSalary, bonus, taxRate));
+        // Creating Salary object with new and setting its data
+        Salary* sal = new Salary();
+        sal->setBaseSalary(baseSalary);
+        sal->setBonus(bonus);
+        sal->setTaxRate(taxRate);
+        salaries.push_back(sal);
     }
 
     for (size_t i = 0; i < employees.size(); ++i) {

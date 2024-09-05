@@ -14,7 +14,7 @@ private:
 
 public:
     // Constructor
-    Employee(const string& id, const string& name, const string& dept) : id(id), name(name), department(dept) {
+    Employee() {
         employeeCount++; // Increment employee count whenever a new employee is created
     }
 
@@ -39,6 +39,17 @@ public:
 
     static void printEmployeeCount() {
         cout << "Total Number of Employees: " << employeeCount << endl;
+    }
+
+    // Setters
+    void setId(const string& newId) {
+        id = newId;
+    }
+    void setName(const string& newName) {
+        name = newName;
+    }
+    void setDepartment(const string& newDepartment) {
+        department = newDepartment;
     }
 
     // Method to print employee information
