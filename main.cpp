@@ -50,7 +50,7 @@ int main() {
 
     for (size_t i = 0; i < employees.size(); ++i) {
         cout << "\nEmployee " << i + 1 << " Information:" << endl;
-        // Accessing Employee object using raw pointer
+        // Accessing Employee object usixng raw pointer
         employees[i]->printInfo();
         cout << "Salary Details:" << endl;
         // Accessing Salary object using raw pointer
