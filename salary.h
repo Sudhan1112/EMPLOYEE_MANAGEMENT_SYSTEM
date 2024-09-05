@@ -12,7 +12,7 @@ private:
 
 public:
     // Constructor
-    Salary(double base, double bonus, double tax) : base(base), bonus(bonus), tax(tax) {
+    Salary() {
         totalSalaryPaid += calculateNetSalary(); // Add net salary to total salary paid
     }
 
@@ -22,6 +22,17 @@ public:
 
     static void printTotalSalaryPaid() {
         cout << "Total Net Salary Paid: " << totalSalaryPaid << endl;
+    }
+
+    // Setters
+    void setBaseSalary(double baseSalary) {
+        base = baseSalary;
+    }
+    void setBonus(double bonusAmount) {
+        bonus = bonusAmount;
+    }
+    void setTaxRate(double taxRate) {
+        tax = taxRate;
     }
 
     // Method to calculate net salary
