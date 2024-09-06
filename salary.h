@@ -42,7 +42,7 @@ public:
         return netSalary;
     }
 
-    // Method to print salary details
+    // Method to print salary details and abstraction concept impacted
     void printSalaryDetails() const {
         cout << "Base Salary: " << base << "\nBonus: " << bonus
              << "\nTax Rate: " << tax << "%" << endl;
