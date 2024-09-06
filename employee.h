@@ -52,7 +52,7 @@ public:
         department = newDepartment;
     }
 
-    // Method to print employee information
+    // Method to print employee information and abstraction concept impacted
     void printInfo() const {
         cout << "Employee ID: " << id << "\nName: " << name
              << "\nDepartment: " << department << endl;
