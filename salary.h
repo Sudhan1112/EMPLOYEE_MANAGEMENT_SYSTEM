@@ -1,6 +1,7 @@
 #ifndef SALARY_H
 #define SALARY_H
 
+#include <iostream>
 using namespace std;
 
 class Salary {
@@ -11,9 +12,20 @@ private:
     static double totalSalaryPaid; // Static variable to track total salary paid
 
 public:
-    // Constructor
-    Salary() {
+    // Default Constructor
+    Salary() : base(0), bonus(0), tax(0) {
+        // Default values set to 0
+    }
+
+    // Parameterized Constructor
+    Salary(double baseSalary, double bonusAmount, double taxRate) 
+        : base(baseSalary), bonus(bonusAmount), tax(taxRate) {
         totalSalaryPaid += calculateNetSalary(); // Add net salary to total salary paid
+    }
+
+    // Destructor
+    ~Salary() {
+        totalSalaryPaid -= calculateNetSalary(); // Subtract net salary from total salary paid
     }
 
     static double getTotalSalaryPaid() {
@@ -42,7 +54,7 @@ public:
         return netSalary;
     }
 
-    // Method to print salary details and abstraction concept impacted
+    // Method to print salary details
     void printSalaryDetails() const {
         cout << "Base Salary: " << base << "\nBonus: " << bonus
              << "\nTax Rate: " << tax << "%" << endl;

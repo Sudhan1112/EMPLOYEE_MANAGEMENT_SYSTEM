@@ -17,7 +17,7 @@ public:
     Employee() {
         employeeCount++; // Increment employee count whenever a new employee is created
     }
-
+    //Destructor which used to dellocate memory after employee object is going out of scope
     ~Employee() {
         employeeCount--; // Decrement employee count when an employee is destroyed
     }
@@ -26,9 +26,11 @@ public:
     string getId() const {
         return id;
     }
+
     string getName() const {
         return name;
     }
+    
     string getDepartment() const {
         return department;
     }
