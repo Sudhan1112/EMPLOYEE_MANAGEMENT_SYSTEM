@@ -1,40 +1,18 @@
+// Compensation.h
 #ifndef COMPENSATION_H
 #define COMPENSATION_H
 
-#include <iostream>
-using namespace std;
-
 class Compensation {
-protected:
-    double baseSalary;
-
 public:
-    // Constructor
-    Compensation() : baseSalary(0.0) {}
-    Compensation(double base) : baseSalary(base) {}
-
-    // Setter
-    void setBaseSalary(double base) {
-        baseSalary = base;
-    }
-
-    // Getter
-    double getBaseSalary() const {
-        return baseSalary;
-    }
-
-    // Method to print base salary
-    virtual void printCompensation() const {
-        cout << "Base Salary: " << baseSalary << endl;
-    }
-
-    // Virtual method to calculate total compensation
-    virtual double calculateTotalCompensation() const {
-        return baseSalary;
-    }
-
-    // Virtual destructor
     virtual ~Compensation() {}
+
+    // Polymorphism: Pure virtual function. 
+    // Derived classes like Salary and BonusSalary must implement this.
+    virtual void displayCompensationDetails() = 0;
+
+    // Polymorphism: Pure virtual function for salary calculation.
+    // Allows dynamic binding to different compensation types at runtime.
+    virtual double calculateNetSalary() = 0; 
 };
 
-#endif // COMPENSATION_H
+#endif
