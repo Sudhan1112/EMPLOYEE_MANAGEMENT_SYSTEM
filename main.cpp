@@ -1,22 +1,85 @@
 #include <iostream>
 #include <vector>
-#include "Employee.h"
-#include "Salary.h"
-
 using namespace std;
 
-int main() {
-    // Vectors to hold raw pointers to Employee and Salary objects
-    vector<Employee*> employees; // Vector of pointers to Employee
-    vector<Salary*> salaries;    // Vector of pointers to Salary
+class Employee {
+public:
+    string id;
+    string name;
+    string department;
+    double baseSalary;
+    double bonus;
+    double taxRate;
+    double performanceBonus;
+    double healthInsurance;
+    int vacationDays;
 
+    // Static variable to track total net salary paid
+    static double totalNetSalaryPaid;
+    static int employeeCount;
+
+    Employee(string empId, string empName, string empDept, double salary, double bonusAmt, 
+             double tax, double perfBonus, double healthIns, int vacDays) {
+        id = empId;
+        name = empName;
+        department = empDept;
+        baseSalary = salary;
+        bonus = bonusAmt;
+        taxRate = tax;
+        performanceBonus = perfBonus;
+        healthInsurance = healthIns;
+        vacationDays = vacDays;
+        employeeCount++;
+    }
+
+    double calculateNetSalary() {
+        double grossSalary = baseSalary + bonus + performanceBonus;
+        double taxAmount = grossSalary * (taxRate / 100);
+        double netSalary = grossSalary - taxAmount - healthInsurance;
+
+        // Update the total net salary paid
+        totalNetSalaryPaid += netSalary;
+
+        return netSalary;
+    }
+
+    void displayDetails() {
+        double netSalary = calculateNetSalary();
+        cout << "\nEmployee ID: " << id << endl;
+        cout << "Name: " << name << endl;
+        cout << "Department: " << department << endl;
+        cout << "Health Insurance: " << healthInsurance << endl;
+        cout << "Vacation Days: " << vacationDays << endl;
+        cout << "Compensation Details:" << endl;
+        cout << "Base Salary: " << baseSalary << endl;
+        cout << "Bonus: " << bonus << endl;
+        cout << "Tax Rate: " << taxRate << "%" << endl;
+        cout << "Performance Bonus: " << performanceBonus << endl;
+        cout << "Net Salary: " << netSalary << endl;
+    }
+
+    // Static function to display total number of employees and total net salary paid
+    static void displaySummary() {
+        cout << "\nTotal Number of Employees: " << employeeCount << endl;
+        cout << "Total Net Salary Paid: " << totalNetSalaryPaid << endl;
+    }
+};
+
+// Initialize static variables
+double Employee::totalNetSalaryPaid = 0;
+int Employee::employeeCount = 0;
+
+int main() {
+    vector<Employee> employees; // Vector to store Employee objects
     int numEmployees;
+
     cout << "Enter the number of employees: ";
     cin >> numEmployees;
 
     for (int i = 0; i < numEmployees; ++i) {
-        string id, name, dept;
-        double baseSalary, bonus, taxRate;
+        string id, name, department;
+        double baseSalary, bonus, taxRate, performanceBonus, healthInsurance;
+        int vacationDays;
 
         cout << "\nEnter details for employee " << i + 1 << ":\n";
         cout << "Employee ID: ";
@@ -24,53 +87,31 @@ int main() {
         cout << "Name: ";
         cin >> name;
         cout << "Department: ";
-        cin >> dept;
-
-        // Creating Employee object with new and setting its data
-        Employee* emp = new Employee();
-        emp->setId(id);
-        emp->setName(name);
-        emp->setDepartment(dept);
-        employees.push_back(emp);
-
+        cin >> department;
         cout << "Base Salary: ";
         cin >> baseSalary;
         cout << "Bonus: ";
         cin >> bonus;
         cout << "Tax Rate (%): ";
         cin >> taxRate;
+        cout << "Performance Bonus: ";
+        cin >> performanceBonus;
+        cout << "Health Insurance: ";
+        cin >> healthInsurance;
+        cout << "Vacation Days: ";
+        cin >> vacationDays;
 
-        // Creating Salary object with new and setting its data
-        Salary* sal = new Salary();
-        sal->setBaseSalary(baseSalary);
-        sal->setBonus(bonus);
-        sal->setTaxRate(taxRate);
-        salaries.push_back(sal);
+        // Add employee to the vector
+        employees.push_back(Employee(id, name, department, baseSalary, bonus, taxRate, performanceBonus, healthInsurance, vacationDays));
     }
 
+    // Display details for each employee
     for (size_t i = 0; i < employees.size(); ++i) {
-        cout << "\nEmployee " << i + 1 << " Information:" << endl;
-        // Accessing Employee object usixng raw pointer
-        employees[i]->printInfo();
-        cout << "Salary Details:" << endl;
-        // Accessing Salary object using raw pointer
-        salaries[i]->printSalaryDetails();
-        cout << "Net Salary: " << salaries[i]->calculateNetSalary() << endl;
+        employees[i].displayDetails();
     }
 
-    // Display the total number of employees and total salary paid using static member functions
-    Employee::printEmployeeCount();
-    Salary::printTotalSalaryPaid();
-
-    // Deallocate memory
-    for (size_t i = 0; i < employees.size(); ++i) {
-        delete employees[i];  // Free memory for Employee
-        delete salaries[i];   // Free memory for Salary
-    }
-
-    // Clear vectors
-    employees.clear();
-    salaries.clear();
+    // Display overall summary
+    Employee::displaySummary();
 
     return 0;
 }
