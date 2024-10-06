@@ -2,16 +2,16 @@
 #ifndef COMPENSATION_H
 #define COMPENSATION_H
 
+// Abstract Class: Compensation is an abstract class since it has pure virtual functions.
 class Compensation {
 public:
+    // Virtual destructor to ensure proper cleanup of derived objects.
     virtual ~Compensation() {}
 
-    // Polymorphism: Pure virtual function. 
-    // Derived classes like Salary and BonusSalary must implement this.
+    // Abstract function (pure virtual): Must be implemented by derived classes.
     virtual void displayCompensationDetails() = 0;
 
-    // Polymorphism: Pure virtual function for salary calculation.
-    // Allows dynamic binding to different compensation types at runtime.
+    // Abstract function (pure virtual): Forces derived classes to implement their own salary calculation logic.
     virtual double calculateNetSalary() = 0; 
 };
 

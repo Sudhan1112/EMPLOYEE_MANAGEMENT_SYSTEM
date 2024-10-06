@@ -4,6 +4,7 @@
 
 #include "Compensation.h"
 
+// Derived Class: Salary inherits from Compensation and implements its abstract methods.
 class Salary : public Compensation {
 private:
     double baseSalary;
@@ -12,13 +13,13 @@ private:
 public:
     Salary(double salary, double tax) : baseSalary(salary), taxRate(tax) {}
 
-    // Polymorphism: This function overrides the Compensation class's pure virtual function.
+    // Implementing the abstract function from Compensation
     void displayCompensationDetails() override {
         cout << "Base Salary: " << baseSalary << endl;
         cout << "Tax Rate: " << taxRate << "%" << endl;
     }
 
-    // Polymorphism: Another override for dynamic salary calculation.
+    // Implementing the abstract function from Compensation
     double calculateNetSalary() override {
         return baseSalary - (baseSalary * (taxRate / 100));
     }
