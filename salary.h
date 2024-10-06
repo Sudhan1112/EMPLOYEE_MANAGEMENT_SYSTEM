@@ -1,77 +1,27 @@
+// Salary.h
 #ifndef SALARY_H
 #define SALARY_H
 
-#include <iostream>
 #include "Compensation.h"
 
-using namespace std;
-
-class Salary : public Compensation { // Single Inheritance
-protected:
-    double bonus;
+class Salary : public Compensation {
+private:
+    double baseSalary;
     double taxRate;
-    static double totalSalaryPaid;
 
 public:
-    // Constructors
-    Salary() : Compensation(), bonus(0.0), taxRate(0.0) {}
-    Salary(double baseSalary, double bonusAmount, double taxRatePercentage)
-        : Compensation(baseSalary), bonus(bonusAmount), taxRate(taxRatePercentage) {
-        totalSalaryPaid += calculateNetSalary();
+    Salary(double salary, double tax) : baseSalary(salary), taxRate(tax) {}
+
+    // Polymorphism: This function overrides the Compensation class's pure virtual function.
+    void displayCompensationDetails() override {
+        cout << "Base Salary: " << baseSalary << endl;
+        cout << "Tax Rate: " << taxRate << "%" << endl;
     }
 
-    // Destructor
-    virtual ~Salary() {
-        totalSalaryPaid -= calculateNetSalary();
-    }
-
-    // Setters
-    void setBonus(double bonusAmount) {
-        bonus = bonusAmount;
-    }
-
-    void setTaxRate(double taxRatePercentage) {
-        taxRate = taxRatePercentage;
-    }
-
-    // Getters
-    double getBonus() const {
-        return bonus;
-    }
-
-    double getTaxRate() const {
-        return taxRate;
-    }
-
-    // Override printCompensation
-    void printCompensation() const override {
-        Compensation::printCompensation();
-        cout << "Bonus: " << bonus << "\nTax Rate: " << taxRate << "%" << endl;
-    }
-
-    // Method to calculate net salary
-    virtual double calculateNetSalary() const {
-        double taxDeduction = baseSalary * taxRate / 100;
-        double netSalary = baseSalary - taxDeduction + bonus;
-        return netSalary;
-    }
-
-    // Override calculateTotalCompensation
-    double calculateTotalCompensation() const override {
-        return calculateNetSalary();
-    }
-
-    // Static methods
-    static double getTotalSalaryPaid() {
-        return totalSalaryPaid;
-    }
-
-    static void printTotalSalaryPaid() {
-        cout << "Total Net Salary Paid: " << totalSalaryPaid << endl;
+    // Polymorphism: Another override for dynamic salary calculation.
+    double calculateNetSalary() override {
+        return baseSalary - (baseSalary * (taxRate / 100));
     }
 };
 
-// Initialize static member
-double Salary::totalSalaryPaid = 0.0;
-
-#endif // SALARY_H
+#endif

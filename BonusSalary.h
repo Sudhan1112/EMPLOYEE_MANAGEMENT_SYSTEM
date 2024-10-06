@@ -1,56 +1,31 @@
-#ifndef BONUSSALARY_H
-#define BONUSSALARY_H
+// BonusSalary.h
+#ifndef BONUS_SALARY_H
+#define BONUS_SALARY_H
 
-#include <iostream>
-#include "Salary.h"
+#include "Compensation.h"
 
-using namespace std;
-
-class BonusSalary : public Salary { // Multilevel Inheritance
+class BonusSalary : public Compensation {
 private:
-    double performanceBonus;
+    double baseSalary;
+    double bonus;
+    double taxRate;
 
 public:
-    // Constructors
-    BonusSalary() : Salary(), performanceBonus(0.0) {}
-    BonusSalary(double baseSalary, double bonusAmount, double taxRatePercentage, double perfBonus)
-        : Salary(baseSalary, bonusAmount, taxRatePercentage), performanceBonus(perfBonus) {
-        totalSalaryPaid += calculateNetSalary();
+    BonusSalary(double salary, double bonusAmt, double tax)
+        : baseSalary(salary), bonus(bonusAmt), taxRate(tax) {}
+
+    // Polymorphism: Overriding Compensation class's pure virtual function.
+    void displayCompensationDetails() override {
+        cout << "Base Salary: " << baseSalary << endl;
+        cout << "Bonus: " << bonus << endl;
+        cout << "Tax Rate: " << taxRate << "%" << endl;
     }
 
-    // Destructor
-    ~BonusSalary() {
-        totalSalaryPaid -= calculateNetSalary();
-    }
-
-    // Setter
-    void setPerformanceBonus(double perfBonus) {
-        performanceBonus = perfBonus;
-    }
-
-    // Getter
-    double getPerformanceBonus() const {
-        return performanceBonus;
-    }
-
-    // Override printCompensation
-    void printCompensation() const override {
-        Salary::printCompensation();
-        cout << "Performance Bonus: " << performanceBonus << endl;
-    }
-
-    // Override calculateNetSalary
-    double calculateNetSalary() const override {
-        double taxDeduction = baseSalary * taxRate / 100;
-        double netSalary = baseSalary - taxDeduction + bonus + performanceBonus;
-        return netSalary;
-    }
-
-    // Override calculateTotalCompensation
-    double calculateTotalCompensation() const override {
-        return calculateNetSalary();
+    // Polymorphism: Dynamic net salary calculation, including bonus.
+    double calculateNetSalary() override {
+        double grossSalary = baseSalary + bonus;
+        return grossSalary - (grossSalary * (taxRate / 100));
     }
 };
 
-#endif // BONUSSALARY_H
-
+#endif
