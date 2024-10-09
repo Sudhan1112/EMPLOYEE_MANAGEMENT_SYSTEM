@@ -1,90 +1,54 @@
-
----
-
-# Employee Management and Salary Calculation
+# Salary Management System
 
 ## Overview
+The **Salary Management System** is designed to automate the management of employee salaries, including calculation of earnings, deductions, and bonuses. Built using **Object-Oriented Programming (OOP)** principles, the system ensures flexibility and ease of maintenance, making payroll management efficient.
 
-This project is a simple C++ application that manages employee information and calculates their salaries. The program allows the user to enter details for multiple employees, including their ID, name, department, base salary, bonus, and tax rate. It then calculates the net salary for each employee after deducting tax and adding bonuses. The program uses classes and vectors to store and manage the data efficiently.
+## Current Features
+- **Employee Management**: Add, update, and manage employee details such as name, ID, and department.
+- **Basic Salary Calculation**: Compute employee salary based on base pay, overtime, and deductions.
+- **Bonus and Incentive Management**: Automatically apply bonuses and incentives.
+- **Leave and Overtime Handling**: Calculate the impact of leaves and overtime hours on final salary.
+- **Tax Deduction**: Deduct taxes from salary based on the applicable tax rate.
+  
+## Technologies Used
+- **Programming Language**: C++ (with a focus on OOP concepts)
+- **OOP Concepts Implemented**: Encapsulation, Inheritance, Polymorphism, Abstraction
+- **Data Storage**: File handling (for storing employee and salary details)
+
+## Class Structure (Current Progress)
+1. **Employee Class**: Stores employee information like name, ID, and department.
+2. **Salary Class**: Calculates salaries by taking base salary, overtime, and bonuses into account.
+3. **Bonus Class**: Manages bonuses and incentives for employees.
+4. **Leave and Overtime Class**: Adjusts salaries based on leave days and overtime hours.
+5. **Tax Class**: Calculates and applies tax deductions to the salary.
+
+## How to Use
+1. **Add Employee**: Input employee details such as name, ID, and department.
+2. **Calculate Salary**: Provide base salary and overtime hours to calculate the total salary.
+3. **Apply Bonus**: Add performance bonuses and incentives.
+4. **Generate Salary Slip**: Generate and view the final salary slip, including deductions and bonuses.
+
+## Future Enhancements
+- Expand **bonus and incentive rules** based on company policies.
+- Add **detailed reporting** for salary breakdowns.
+- Incorporate a **graphical user interface (GUI)** for easier interaction.
+- Implement **database support** for better data persistence and management.
 
 ## How to Run
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/salary-management-system.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd salary-management-system
+    ```
+3. Compile the project:
+    ```bash
+    g++ main.cpp -o salary-management
+    ```
+4. Run the application:
+    ```bash
+    ./salary-management
+    ```
 
-1. **Clone the Repository:**
-   ```sh
-   git clone https://github.com/your-username/EmployeeManagement.git
-   cd EmployeeManagement
-   ```
-
-2. **Compile the Code:**
-   ```sh
-   g++ main.cpp -o EmployeeManagement
-   ```
-
-3. **Run the Executable:**
-   ```sh
-   ./EmployeeManagement
-   ```
-
-## Usage
-
-- The program will prompt you to enter the number of employees.
-- For each employee, you will be prompted to enter the following details:
-  - Employee ID
-  - Name
-  - Department
-  - Base Salary
-  - Bonus
-  - Tax Rate (%)
-- After entering the details for all employees, the program will display each employee's information along with their calculated net salary.
-
-## Example Output
-
-```plaintext
-Enter the number of employees: 2
-
-Enter details for employee 1:
-Employee ID: E001
-Name: John Doe
-Department: HR
-Base Salary: 50000
-Bonus: 5000
-Tax Rate (%): 10
-
-Enter details for employee 2:
-Employee ID: E002
-Name: Jane Smith
-Department: IT
-Base Salary: 60000
-Bonus: 6000
-Tax Rate (%): 12
-
-Employee 1 Information:
-Employee ID: E001
-Name: John Doe
-Department: HR
-Salary Details:
-Base Salary: 50000
-Bonus: 5000
-Tax Rate: 10%
-Net Salary: 45000
-
-Employee 2 Information:
-Employee ID: E002
-Name: Jane Smith
-Department: IT
-Salary Details:
-Base Salary: 60000
-Bonus: 6000
-Tax Rate: 12%
-Net Salary: 52800
-```
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
