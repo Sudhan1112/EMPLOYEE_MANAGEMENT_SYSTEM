@@ -16,21 +16,21 @@ private:
 
 public:
     Employee() : name(""), department(Constants::Department::HR), level(Constants::EmployeeLevel::JUNIOR) {}
-    
+
     string getName() const override { return name; }
     void setName(const string& name) override { this->name = name; }
     Constants::Department getDepartment() const override { return department; }
     void setDepartment(Constants::Department dept) override { department = dept; }
     Constants::EmployeeLevel getLevel() const override { return level; }
     void setLevel(Constants::EmployeeLevel level) override { this->level = level; }
-    
+
     void inputDetails() {
         cout << "Enter Employee Name: ";
         getline(cin, name);
         department = inputDepartment();
         level = inputLevel();
     }
-    
+
     void displayDetails() const override {
         cout << "\nEmployee Details:\n";
         cout << "Name: " << name << "\n";
@@ -60,7 +60,7 @@ private:
             }
         }
     }
-    
+
     Constants::EmployeeLevel inputLevel() {
         while (true) {
             cout << "\nChoose Level:\n"
@@ -82,7 +82,7 @@ private:
             }
         }
     }
-    
+
     string getDepartmentName() const {
         switch (department) {
             case Constants::Department::HR: return "HR";
@@ -92,7 +92,7 @@ private:
             default: return "Unknown";
         }
     }
-    
+
     string getLevelName() const {
         switch (level) {
             case Constants::EmployeeLevel::JUNIOR: return "Junior";
