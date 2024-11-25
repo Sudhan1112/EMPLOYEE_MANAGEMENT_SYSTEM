@@ -1,54 +1,132 @@
-# Salary Management System
+# Employee Management System
 
 ## Overview
-The **Salary Management System** is designed to automate the management of employee salaries, including calculation of earnings, deductions, and bonuses. Built using **Object-Oriented Programming (OOP)** principles, the system ensures flexibility and ease of maintenance, making payroll management efficient.
+This Employee Management System is a C++ console application that demonstrates SOLID principles and Object-Oriented Programming concepts. It provides a simple interface to manage employee records with features like adding employees and viewing employee details.
 
-## Current Features
-- **Employee Management**: Add, update, and manage employee details such as name, ID, and department.
-- **Basic Salary Calculation**: Compute employee salary based on base pay, overtime, and deductions.
-- **Bonus and Incentive Management**: Automatically apply bonuses and incentives.
-- **Leave and Overtime Handling**: Calculate the impact of leaves and overtime hours on final salary.
-- **Tax Deduction**: Deduct taxes from salary based on the applicable tax rate.
-  
-## Technologies Used
-- **Programming Language**: C++ (with a focus on OOP concepts)
-- **OOP Concepts Implemented**: Encapsulation, Inheritance, Polymorphism, Abstraction
-- **Data Storage**: File handling (for storing employee and salary details)
+## Design Principles Implementation
 
-## Class Structure (Current Progress)
-1. **Employee Class**: Stores employee information like name, ID, and department.
-2. **Salary Class**: Calculates salaries by taking base salary, overtime, and bonuses into account.
-3. **Bonus Class**: Manages bonuses and incentives for employees.
-4. **Leave and Overtime Class**: Adjusts salaries based on leave days and overtime hours.
-5. **Tax Class**: Calculates and applies tax deductions to the salary.
+### SOLID Principles
+1. **Single Responsibility Principle (SRP)**
+   - Each class has a single responsibility
+   - `Employee` class handles employee data and operations
+   - `Constants` namespace manages enumerations
+   - Main program handles user interaction
 
-## How to Use
-1. **Add Employee**: Input employee details such as name, ID, and department.
-2. **Calculate Salary**: Provide base salary and overtime hours to calculate the total salary.
-3. **Apply Bonus**: Add performance bonuses and incentives.
-4. **Generate Salary Slip**: Generate and view the final salary slip, including deductions and bonuses.
+2. **Open/Closed Principle (OCP)**
+   - System is open for extension through the `IEmployee` interface
+   - New employee types can be added without modifying existing code
+
+3. **Liskov Substitution Principle (LSP)**
+   - `Employee` class properly implements the `IEmployee` interface
+   - Any derived classes can be substituted for the base interface
+
+4. **Interface Segregation Principle (ISP)**
+   - `IEmployee` interface contains only essential methods
+   - No class is forced to implement unnecessary methods
+
+5. **Dependency Inversion Principle (DIP)**
+   - High-level modules depend on abstractions (`IEmployee`)
+   - Low-level modules implement these abstractions
+
+### OOP Pillars
+1. **Encapsulation**
+   - Private data members in `Employee` class
+   - Public interface methods for data access
+   - Protected access where needed
+
+2. **Inheritance**
+   - `Employee` class inherits from `IEmployee` interface
+   - Proper use of virtual functions
+
+3. **Polymorphism**
+   - Virtual functions in `IEmployee` interface
+   - Runtime polymorphism through interface implementation
+
+4. **Abstraction**
+   - Abstract interface `IEmployee`
+   - Clear separation of interface and implementation
+
+## Code Structure
+
+```
+employee-management/
+│
+├── include/
+│   ├── Constants.h       # Enums for Department and EmployeeLevel
+│   ├── IEmployee.h       # Interface for Employee class
+│   └── Employee.h        # Employee class implementation
+│
+└── src/
+    └── main.cpp          # Main program implementation
+```
+
+## Features
+- Add new employees with details
+- Display all employee records
+- Department management (HR, IT, Finance, Sales)
+- Employee level tracking (Junior, Mid, Senior, Lead)
+- Input validation
+- Clean console-based user interface
+
+## Usage Guide
+
+### Adding an Employee
+1. Select option 1 from the main menu
+2. Enter employee name
+3. Select department from available options
+4. Select employee level from available options
+
+### Viewing Employees
+1. Select option 2 from the main menu
+2. View list of all employees with their details
+
+### Sample Output
+```
+Menu:
+1. Add Employee
+2. Display All Employees
+3. Exit
+Enter your choice: 1
+
+Enter Employee Name: John Doe
+
+Choose Department:
+1. HR
+2. IT
+3. Finance
+4. Sales
+Enter the department number: 2
+
+Choose Level:
+1. Junior
+2. Mid
+3. Senior
+4. Lead
+Enter the level number: 3
+
+Employee details have been successfully saved to the database!
+```
+
+## Project Extension Guidelines
+## Contributing
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## Future Enhancements
-- Expand **bonus and incentive rules** based on company policies.
-- Add **detailed reporting** for salary breakdowns.
-- Incorporate a **graphical user interface (GUI)** for easier interaction.
-- Implement **database support** for better data persistence and management.
+- Database integration
+- Employee search functionality
+- Salary management
+- Department-wise reporting
+- Employee performance tracking
+- GUI implementation
 
-## How to Run
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/salary-management-system.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd salary-management-system
-    ```
-3. Compile the project:
-    ```bash
-    g++ main.cpp -o salary-management
-    ```
-4. Run the application:
-    ```bash
-    ./salary-management
-    ```
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
+## Acknowledgments
+- Modern C++ best practices
+- SOLID design principles
+- Object-oriented programming concepts
