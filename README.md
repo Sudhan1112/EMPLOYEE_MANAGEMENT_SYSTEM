@@ -116,17 +116,17 @@ Employee details have been successfully saved to the database!
 5. Create a Pull Request
 
 ## Future Enhancements
-- Database integration
-- Employee search functionality
-- Salary management
-- Department-wise reporting
-- Employee performance tracking
-- GUI implementation
+- Database integration.
+- Employee search functionality.
+- Salary management.
+- Department-wise reporting.
+- Employee performance tracking.
+- GUI implementation.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
-- Modern C++ best practices
-- SOLID design principles
-- Object-oriented programming concepts
+- Modern C++ best practices.
+- SOLID design principles.
+- Object-oriented programming concepts.
